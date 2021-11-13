@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Giỏ hàng</title>
+	<link rel="shortcut icon" type="image/jpg" href="assets/photo/shortcut.png"/>
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/project/cart/style.css">
+	<link rel="stylesheet" href="assets/css/respondsive.css">
+	<link rel="stylesheet" href="assets/project/cart/respondsive.css">
+	<link rel="stylesheet" href="assets/font/themify-icons/themify-icons.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<div id="main">
+		<header id="header">
+
+			<div class="nav">
+				<ul class="control">
+					<li class="control-item">
+						<a href="#">
+							<i class="ti-user"> </i>
+							Đức Ju
+						</a>
+					</li>
+					<li class="control-item active"><a href="https://duc-ju.github.io/online-shop/">Trang chủ</a></li>
+					<li class="control-item" id="logout"><a href="#">Đăng xuất</a></li>
+
+				</ul>
+			</div>
+
+			<a href="https://duc-ju.github.io/online-shop/" class="brand-name">
+				<div class="brand-logo"><img src="assets/photo/logo.png" alt="" class=""></div>
+			</a>
+
+
+
+			<form method="get" action="#" class="search">
+				<input type="text" name="search" placeholder="Nhập tên sản phẩm"
+					id="search-product-name">
+				<input type="submit" value="Tìm kiếm" id="submit-button">
+			</form>
+
+
+		</header>
+		<div id="content">
+			<div class="empty-cart">
+				<h2 class="empty-cart-notice">Cart is empty</h2>
+				<a href="https://duc-ju.github.io/online-shop/" class="go-home-button">Go home</a>
+			</div>
+			<div class="cart-container">
+				<div class="sub-nav">
+					<div class="sub-nav-title">
+						<h2 class="content-title">Giỏ Hàng</h2>
+					</div>
+					<div class="sub-nav-price">Giá</div>
+					<div class="sub-nav-quantity">Số lượng</div>
+					<div class="sub-nav-amount">Thành tiền</div>
+					<div class="sub-nav-action">Thao tác</div>
+				</div>
+				<div id="cart-id" style="display: none">20</div>
+
+
+				<div class="book-item">
+					<div class="book-image">
+						<img src="https://m.media-amazon.com/images/I/51DZeZw7K0L.jpg"
+							alt="Book-image" class="book-image-item">
+					</div>
+					<div class="book-properties">
+						<div class="book-title">Greenlights Audible Logo Audible Audiobook Unabridged</div>
+						<div class="book-author">Author: Matthew McConaughey</div>
+					</div>
+					<div class="book-price">16.95$</div>
+					<div class="book-quantity">
+						<div class="book-update">
+							<div onclick="window.open('#','_self')"
+								class="book-subtract pointer">-</div>
+							<div class="book-number-quantity">2</div>
+							<div onclick="window.open('#','_self')"
+								class="book-plus pointer">+</div>
+						</div>
+					</div>
+					<div class="book-total">
+						<div class="book-total-cost">33,90$</div>
+					</div>
+					<div class="book-action">
+						<a class="book-delete-button"
+							href="#">Xóa</a>
+					</div>
+				</div>
+
+				<div class="book-item">
+					<div class="book-image">
+						<img src="https://images-na.ssl-images-amazon.com/images/I/51C45Gzkq-L._SX329_BO1,204,203,200_.jpg"
+							alt="Book-image" class="book-image-item">
+					</div>
+					<div class="book-properties">
+						<div class="book-title">Mighty Marvel Masterworks: The Amazing
+							Spider-Man Vol. 1: With Great Power…</div>
+						<div class="book-author">Author: Stan Lee</div>
+					</div>
+					<div class="book-price">12.89$</div>
+					<div class="book-quantity">
+						<div class="book-update">
+							<div onclick="window.open('#','_self')"
+								class="book-subtract pointer">-</div>
+							<div class="book-number-quantity">3</div>
+							<div onclick="window.open('#','_self')"
+								class="book-plus pointer">+</div>
+						</div>
+					</div>
+					<div class="book-total">
+						<div class="book-total-cost">38,67$</div>
+					</div>
+					<div class="book-action">
+						<a class="book-delete-button"
+							href="#">Xóa</a>
+					</div>
+				</div>
+
+				<div class="book-item">
+					<div class="book-image">
+						<img src="https://images-na.ssl-images-amazon.com/images/I/513ubmtns2L._SX339_BO1,204,203,200_.jpg"
+							alt="Book-image" class="book-image-item">
+					</div>
+					<div class="book-properties">
+						<div class="book-title">The Joker: 80 Years of the Clown Prince of Crime
+							The Deluxe Edition</div>
+						<div class="book-author">Author: Various</div>
+					</div>
+					<div class="book-price">18.69$</div>
+					<div class="book-quantity">
+						<div class="book-update">
+							<div onclick="window.open('#','_self')"
+								class="book-subtract pointer">-</div>
+							<div class="book-number-quantity">1</div>
+							<div onclick="window.open('#','_self')"
+								class="book-plus pointer">+</div>
+						</div>
+					</div>
+					<div class="book-total">
+						<div class="book-total-cost">18,69$</div>
+					</div>
+					<div class="book-action">
+						<a class="book-delete-button"
+							href="#">Xóa</a>
+					</div>
+				</div>
+
+				<div class="book-item">
+					<div class="book-image">
+						<img src="https://images-na.ssl-images-amazon.com/images/I/51RN-ydxniS._SX318_BO1,204,203,200_.jpg"
+							alt="Book-image" class="book-image-item">
+					</div>
+					<div class="book-properties">
+						<div class="book-title">The Nature of Middle-earth</div>
+						<div class="book-author">Author: J.R.R. Tolkien</div>
+					</div>
+					<div class="book-price">19.2$</div>
+					<div class="book-quantity">
+						<div class="book-update">
+							<div onclick="window.open('#','_self')"
+								class="book-subtract pointer">-</div>
+							<div class="book-number-quantity">3</div>
+							<div onclick="window.open('#','_self')"
+								class="book-plus pointer">+</div>
+						</div>
+					</div>
+					<div class="book-total">
+						<div class="book-total-cost">57,60$</div>
+					</div>
+					<div class="book-action">
+						<a class="book-delete-button"
+							href="#">Delete</a>
+					</div>
+				</div>
+
+
+
+				<div class="cart-control">
+					<div class="cart-order">
+						<div class="cart-total-price">Tổng đơn hàng (9 sản phẩm): 148,86$</div>
+						<div class="cart-order-button pointer">Đặt hàng</div>
+					</div>
+				</div>
+			</div>
+			<div class="order-container">
+				<div class="choose-address">
+					<h3 class="choose-address-title">Please choose your address</h3>
+
+
+					<div class="user-address">
+						<div class="addressid" style="display: none">1</div>
+						<div class="address-fullname">Full name: Nguyen Trang Duc</div>
+						<div class="address-phonenumber">Phone number: 0963835711</div>
+						<div class="address-fulladdress">Address: Thanh Tri, Ha Noi, Viet Nam
+						</div>
+					</div>
+
+					<div class="user-address">
+						<div class="addressid" style="display: none">2</div>
+						<div class="address-fullname">Full name: Nguyen Duc</div>
+						<div class="address-phonenumber">Phone number: 0935654342</div>
+						<div class="address-fulladdress">Address: Mo Lao, Ha Dong, Ha Noi, Viet
+							Nam</div>
+					</div>
+
+					<div class="user-address">
+						<div class="addressid" style="display: none">3</div>
+						<div class="address-fullname">Full name: Duc Ju</div>
+						<div class="address-phonenumber">Phone number: 0356547899</div>
+						<div class="address-fulladdress">Address: Hoc Vien Cong Nghe Buu Chinh
+							Vien Thong, Ha Dong, Ha Noi</div>
+					</div>
+
+
+
+					<div class="address-add">
+						<a href="" class="address-add-button">Add new address</a>
+					</div>
+				</div>
+				<div class="choose-payment-method">
+					<h3 class="payment-title">Please choose a payment method</h3>
+
+
+					<div class="payment-item">
+						<div class="payment-id" style="display: none">1</div>
+						<div class="payment-method">Pay on delivery</div>
+					</div>
+
+
+				</div>
+				<div class="order-control">
+					<div class="order-info">
+						<div class="order-total-price">Total price (9 items): 148,86$</div>
+						<div class="order-ship-fee">Shipping fee: 2$</div>
+						<div class="order-total-payment">Total payment: 150,86$</div>
+						<div class="order-button pointer">Confirm order</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+
+		<div id="footer">
+			<div class="ruler-line">&nbsp</div>
+			<div class="footer-container">
+				<div class="footer-section">
+					<h2>CHĂM SÓC KHÁCH HÀNG</h2>
+					<ul>
+						<li><a href="#">Trung Tâm Trợ Giúp</a></li>
+						<li><a href="#">Hướng Dẫn Mua Hàng</a></li>
+						<li><a href="#">Thanh Toán</a></li>
+						<li><a href="#">Vận Chuyển</a></li>
+						<li><a href="#">Trả Hàng & Hoàn Tiền</a></li>
+						<li><a href="#">Chăm Sóc Khách Hàng</a></li>
+						<li><a href="#">Chính Sách Bảo Hành</a></li>
+					</ul>
+				</div>
+				<div class="footer-section">
+					<h2>VỀ QUÁN QUEN</h2>
+					<ul>
+						<li><a href="#">Giới Thiệu Về Quán Quen Việt Nam</a></li>
+						<li><a href="#">Tuyển Dụng</a></li>
+						<li><a href="#">Chính sách bảo mật</a></li>
+						<li><a href="#">Chính hãng</a></li>
+						<li><a href="#">Chương trình tiếp thị liên kết</a></li>
+						<li><a href="#">Kênh quảng bá</a></li>
+						<li><a href="#">Liên hệ với truyền thông</a></li>
+					</ul>
+				</div>
+		
+				<div class="footer-section">
+					<h2>THANH TOÁN</h2>
+					<ul>
+						<li><a href="#">Visa</a></li>
+						<li><a href="#">MasterCard</a></li>
+						<li><a href="#">JCB</a></li>
+						<li><a href="#">CODE</a></li>
+						<li><a href="#">Trả Góp</a></li>
+					</ul>
+					<h2>ĐƠN VỊ VẬN CHUYỂN</h2>
+					<ul>
+						<li><a href="#">Giao Hàng Nhanh</a></li>
+						<li><a href="#">Giao hàng tiết kiệm</a></li>
+						<li><a href="#">Viettel Post</a></li>
+						<li><a href="#">Ninja Van</a></li>
+					</ul>
+				</div>
+		
+				<div class="footer-section">
+					<h2>THEO DÕI CHÚNG TÔI TRÊN</h2>
+					<ul>
+						<li><a href="#"><i class="fab fa-facebook-square"></i>   Facebook</a></li>
+						<li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+						<li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="ruler-line">&nbsp</div>
+			<div id="footer-copyright">© 2021 Quán Quen. Tất cả các quyền được bảo lưu.</div>
+		</div>
+		<div id="modal" class="modal">
+			<div class="modal-container">
+				<div class="modal-notice">
+					<h2 class="notice-title">You have added book successfully</h2>
+					<div class="modal-confirm">
+						<a class="modal-cancel" onclick="cancelAllModal()"
+							style="cursor: pointer">OK</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="assets/js/script.js"></script>
+	<script src="assets/project/cart/script.js"></script>
+</body>
+
+</html>
