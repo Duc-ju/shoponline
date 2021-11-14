@@ -36,14 +36,20 @@
 							<div class="form-group">
 								<label for="name"><i
 										class="zmdi zmdi-account material-icons-name"></i></label>
-								<input type="text" name="name" id="name" required
-									placeholder="Your Name" />
+								<input type="text" name="username" id="name" required
+									placeholder="Username" />
 							</div>
 							<div class="form-group">
-								<label for="text"><i
+								<label for="phonenumber"><i
 										class="zmdi zmdi-face"></i></label>
-								<input type="text" name="nickname" id="nickname" required
-									placeholder="Your Nickname" />
+								<input type="text" name="phoneNumber" id="phonenumber" required
+									placeholder="Phone number" />
+							</div>
+							<div class="form-group">
+								<label for="email"><i
+										class="zmdi zmdi-face"></i></label>
+								<input type="email" name="email" id="email" required
+									placeholder="Email" />
 							</div>
 							<div class="form-group">
 								<label for="pass"><i class="zmdi zmdi-lock"></i></label>

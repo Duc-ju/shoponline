@@ -45,7 +45,7 @@ public class HomeServlet extends HttpServlet {
 //		req.setAttribute("books",books );
 //		req.setAttribute("categories", categories);
 		
-		request.getRequestDispatcher("Home.").forward(request, response);
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	/**

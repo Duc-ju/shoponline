@@ -18,6 +18,24 @@ public class Customer {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	public Customer(String phone, String mail) {
+		super();
+		this.phone = phone;
+		this.mail = mail;
+	}
+
+	
+	
+	public Customer(String phone, String mail, Account account) {
+		super();
+		this.phone = phone;
+		this.mail = mail;
+		this.account = account;
+	}
+
+
 	public Customer(int id, String phone, String mail, Account account, Address address, FullName fullName,
 			List<Order> orders) {
 		super();
