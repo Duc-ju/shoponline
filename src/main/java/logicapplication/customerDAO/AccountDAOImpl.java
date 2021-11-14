@@ -64,4 +64,10 @@ public class AccountDAOImpl implements AccountDAO{
 		return null;
 	}
 
+	@Override
+	public boolean checkDuplicatedName(String username) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
