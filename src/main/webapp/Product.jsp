@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,105 +42,88 @@
 	<div id="toast"></div>
 	<div id="main">
 		<!-- header section -->
-		<header id="header">
-
-			<div class="nav">
-				<ul class="control">
-					<li class="control-item">
-						<a href="#">
-							<i class="ti-user"> </i>
-							Đức Ju
-						</a>
-					</li>
-					<li class="control-item actived"><a
-							href="https://duc-ju.github.io/online-shop/">Trang chủ</a></li>
-					<li class="control-item" id="logout"><a href="#">Đăng xuất</a></li>
-
-				</ul>
-			</div>
-
-			<a href="https://duc-ju.github.io/online-shop/" class="brand-name">
-				<div class="brand-logo"><img src="assets/photo/logo.png" alt="" class=""></div>
-			</a>
-
-
-
-			<form method="get" action="#" class="search">
-				<input type="text" name="search" placeholder="Nhập tên sản phẩm"
-					id="search-product-name">
-				<input type="submit" value="Tìm kiếm" id="submit-button">
-			</form>
-
-			<div onclick="window.open('#','_self')" class="cart">
-				<div class="quantity">9</div>
-				<i class="ti-shopping-cart cart-icon"></i>
-			</div>
-
-		</header>
-		<section id="breadcrumb">Quán quen <i class="fas fa-angle-right"></i> Thời trang nam <i
-				class="fas fa-angle-right"></i> Áo Polo nam Leo Vatino vải Cotton cá sấu cao cấp xuất
-			xịn dệt bo dày dặn chuẩn form áo thun cổ bẻ tay ngắn - Galvin</section>
+		<%@include file="Header.jsp" %>
+		<section id="breadcrumb">Quán quen <i class="fas fa-angle-right"></i> ${title} <i
+				class="fas fa-angle-right"></i> ${item.getHeader()}</section>
 		<section id="content">
 			<div class="content-section">
 				<div class="product-image">
 					<div class="image-container">
 						<div class="slider">
-							<div class="slider-item"><img
-									src="https://cf.shopee.vn/file/9761b80404d5f5ea46769a1785a29055"
+							<c:forEach items="${item.getImage()}" var="image">
+								<div class="slider-item">
+								<img
+									src="${image}"
 									alt="" class="">
-							</div>
-							<div class="slider-item"><img
-									src="https://cf.shopee.vn/file/d539f0e35ce9bc57f738b3917a52e560"
-									alt="" class="">
-							</div>
-							<div class="slider-item"><img
-									src="https://cf.shopee.vn/file/906ca9a0d6232b553c346a62571f953a"
-									alt="" class="">
-							</div>
+								</div>
+							</c:forEach>
 						</div>
 					</div>
 					<div class="image-list">
 						<div class="image-list-container">
-							<div class="list-item"><img
-									src="https://cf.shopee.vn/file/9761b80404d5f5ea46769a1785a29055"
-									alt="" class="">
-							</div>
-							<div class="list-item"><img
-									src="https://cf.shopee.vn/file/d539f0e35ce9bc57f738b3917a52e560"
-									alt="" class="">
-							</div>
-							<div class="list-item"><img
-									src="https://cf.shopee.vn/file/906ca9a0d6232b553c346a62571f953a"
-									alt="" class="">
-							</div>
-							<div class="list-item"><img
-									src="https://cf.shopee.vn/file/d539f0e35ce9bc57f738b3917a52e560"
-									alt="" class="">
-							</div>
-							<div class="list-item"><img
-									src="https://cf.shopee.vn/file/906ca9a0d6232b553c346a62571f953a"
-									alt="" class="">
-							</div>
+							<c:forEach items="${item.getImage()}" var="image">
+								<div class="list-item">
+									<img
+										src="${image}"
+										alt="" class="">
+								</div>
+							</c:forEach>
 						</div>
 					</div>
 				</div>
 				<div class="product-info">
 					<div class="info-container">
-						<h2 class="product-header">Áo Polo nam Leo Vatino vải Cotton cá sấu cao
-							cấp xuất xịn dệt bo dày dặn chuẩn form áo thun cổ bẻ tay ngắn -
-							Galvin</h2>
-						<div class="product-brand">Thương hiệu: <a href="#">POLOMAN</a></div>
+						<h2 class="product-header">${item.getHeader()}</h2>
+						<c:if test="${type == 'bookitem'}">
+							<div class="brand-name pointer">
+								<div class="product-brand">
+									Tác giả: <a href="#">${item.getBook().getAuthor().getName()}</a>
+								</div>
+							</div>
+						</c:if>
+						<c:if test="${subtitle == 'Laptop'}">
+							<div class="brand-name pointer">
+								<div class="product-brand">
+									Thương hiệu: <a href="#">${item.getElectronic().getBrand()}</a>
+								</div>
+							</div>
+						</c:if>
+						<c:choose>
+							<c:when test="${item.getDiscount()*100>=1}">
+								<div class="old-price">
+									<fmt:formatNumber
+										value="${item.getPrices()+item.getPrices()*(item.getDiscount())}"
+										minFractionDigits="0" maxFractionDigits="0" />đ
+								</div>
+							</c:when>
+							<c:when test="${false}">
 
-						<div class="old-price">220.000đ</div>
-						<div class="price">119.000đ</div>
-						<div class="discount-badge">46% giảm</div>
+							</c:when>
+							<c:otherwise>
+								<div class="old-price" style='color: white'>&nbsp;</div>
+							</c:otherwise>
+						</c:choose>
+						<div class="price">
+							<fmt:formatNumber value="${item.getPrices()}"
+								minFractionDigits="0" maxFractionDigits="0" />đ
+						</div>
+						<c:if test="${item.getDiscount()*100>=1}">
+							<div class="discount-badge">
+								<fmt:formatNumber value="${item.getDiscount()*100}"
+									minFractionDigits="0" maxFractionDigits="0" />% Giảm
+							</div>
+						</c:if>
+
 						<div class="button-group mt-32">
-							<div class="add-to-cart"><a href="#"><i
-										class="fas fa-cart-plus"></i> Thêm vào
-									giỏ hàng</a></div>
-							<div class="go-to-cart"><a href="#"><i
-										class="fas fa-cart-plus"></i> Mua
-									ngay</a></div>
+							<div class="add-to-cart">
+								<a href="${pageContext.request.contextPath}/add-to-cart?type=${type}&id=${item.getId()}"><i class="fas fa-cart-plus"></i> Thêm vào giỏ
+									hàng</a>
+							</div>
+							<div class="go-to-cart">
+								<a
+									href="${pageContext.request.contextPath}/add-to-cart?type=${type}&id=${item.getId()}"><i
+									class="fas fa-cart-plus"></i> Mua ngay</a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -149,100 +136,131 @@
 								<h2>CHI TIẾT SẢN PHẨM</h2>
 							</div>
 							<div class="description-row">
-								<div class="description-col-2">
-									Danh Mục
-								</div>
+								<div class="description-col-2">Danh Mục</div>
 								<div class="description-col-10">
-									Quán quen <i class="fas fa-angle-right"></i>
-									Thời trang nam
+									Quán quen <i class="fas fa-angle-right"></i> ${title}
 								</div>
 							</div>
-							<div class="description-row">
-								<div class="description-col-2">
-									Thương hiệu
+							
+							<c:if test="${type == 'bookitem'}">
+								<div class="description-row">
+									<div class="description-col-2">Tác giả</div>
+									<div class="description-col-10"><a>${item.getBook().getAuthor().getName()}</a></div>
 								</div>
-								<div class="description-col-10">
-									<a href="#">POLOMAN</a>
+								<div class="description-row">
+									<div class="description-col-2">Ngôn ngữ</div>
+									<div class="description-col-10">${item.getBook().getLanguage()}</div>
 								</div>
-							</div>
-							<div class="description-row">
-								<div class="description-col-2">
-									Chất liệu
+								<div class="description-row">
+									<div class="description-col-2">Số trang</div>
+									<div class="description-col-10">${item.getBook().getNumberOfPage()}</div>
 								</div>
-								<div class="description-col-10">
-									Cotton
+								<div class="description-row">
+									<div class="description-col-2">Danh Mục</div>
+									<div class="description-col-10">${item.getBook().getCategory().getName()}</div>
 								</div>
-							</div>
-							<div class="description-row">
-								<div class="description-col-2">
-									Mẫu
+								<div class="description-row">
+									<div class="description-col-2">Nhà phát hành</div>
+									<div class="description-col-10">${item.getBook().getPublisher().getName()}</div>
 								</div>
-								<div class="description-col-10">
-									Trơn
+							</c:if>
+							<c:if test="${subtitle == 'MobilePhone'}">
+								<div class="description-row">
+									<div class="description-col-2">Thương hiệu</div>
+									<div class="description-col-10">
+										<a href="#">${item.getElectronic().getBrand()}</a>
+									</div>
 								</div>
-							</div>
-							<div class="description-row">
-								<div class="description-col-2">
-									Xuất xứ
+								<div class="description-row">
+									<div class="description-col-2">Mẫu sản phẩm</div>
+									<div class="description-col-10">${item.getElectronic().getProductName()}</div>
 								</div>
-								<div class="description-col-10">
-									Việt Nam
+								<div class="description-row">
+									<div class="description-col-2">Thời gian bảo hành</div>
+									<div class="description-col-10">${item.getElectronic().getWarrantyDuration()}</div>
 								</div>
-							</div>
-							<div class="description-row">
-								<div class="description-col-2">
-									Chiều dài tay áo
+								<div class="description-row">
+									<div class="description-col-2">Kích thước màn hình</div>
+									<div class="description-col-10">${item.getElectronic().getScreenSize()}</div>
 								</div>
-								<div class="description-col-10">
-									Tay ngắn
+								<div class="description-row">
+									<div class="description-col-2">RAM</div>
+									<div class="description-col-10">${item.getElectronic().getRAM()}</div>
 								</div>
-							</div>
+							</c:if>
+							<c:if test="${subtitle == 'Tablet'}">
+								<div class="description-row">
+									<div class="description-col-2">Thương hiệu</div>
+									<div class="description-col-10">
+										<a href="#">${item.getElectronic().getBrand()}</a>
+									</div>
+								</div>
+								<div class="description-row">
+									<div class="description-col-2">Mẫu sản phẩm</div>
+									<div class="description-col-10">${item.getElectronic().getProductName()}</div>
+								</div>
+								<div class="description-row">
+									<div class="description-col-2">Thời gian bảo hành</div>
+									<div class="description-col-10">${item.getElectronic().getWarrantyDuration()}</div>
+								</div>
+								<div class="description-row">
+									<div class="description-col-2">Kích thước màn hình</div>
+									<div class="description-col-10">${item.getElectronic().getScreenSize()}</div>
+								</div>
+							</c:if>
+							<c:if test="${subtitle == 'Laptop'}">
+								<div class="description-row">
+									<div class="description-col-2">Thương hiệu</div>
+									<div class="description-col-10">
+										<a href="#">${item.getElectronic().getBrand()}</a>
+									</div>
+								</div>
+								<div class="description-row">
+									<div class="description-col-2">Mẫu sản phẩm</div>
+									<div class="description-col-10">${item.getElectronic().getProductName()}</div>
+								</div>
+								<div class="description-row">
+									<div class="description-col-2">Thời gian bảo hành</div>
+									<div class="description-col-10">${item.getElectronic().getWarrantyDuration()}</div>
+								</div>
+								<div class="description-row">
+									<div class="description-col-2">Kích thước màn hình</div>
+									<div class="description-col-10">${item.getElectronic().getScreenSize()}</div>
+								</div>
+							</c:if>
+							<c:if test="${subtitle = 'KidShoes'}">
+								<div class="description-row">
+									<div class="description-col-2">Thương hiệu</div>
+									<div class="description-col-10">
+										<a href="#">${item.getShoes().getBrand()}</a>
+									</div>
+								</div>
+							</c:if>
+							<c:if test="${subtitle = 'MenShoes'}">
+								<div class="description-row">
+									<div class="description-col-2">Thương hiệu</div>
+									<div class="description-col-10">
+										<a href="#">${item.getShoes().getBrand()}</a>
+									</div>
+								</div>
+							</c:if>
+							<c:if test="${subtitle = 'WomanShoes'}">
+								<div class="description-row">
+									<div class="description-col-2">Thương hiệu</div>
+									<div class="description-col-10">
+										<a href="#">${item.getShoes().getBrand()}</a>
+									</div>
+								</div>
+							</c:if>
+							
+							
 						</div>
 						<div class="description-section">
 							<div class="description-header">
 								<h2>MÔ TẢ SẢN PHẨM</h2>
 							</div>
 							<div class="description-content">
-								<span>Áo thun Polo nam cổ dệt bo đang là sản phẩm Top 1 Polo Bán Chạy - Sự lựa chọn hoàn hảo cho phái mạnh với sự đơn giản, tiện lợi, lịch thiệp, khỏe khoắn và tinh tế
-+ LEO VATINO cam kết sản phẩm 100% thuộc bản quyền tự chụp ảnh thật tại Studio của Shop 
-+ Sản phẩm được LEO VATINO phân phối độc quyền từ thương hiệu Chính Hãng cao cấp
-* Thông tin Sản phẩm Áo thun Polo nam cổ dệt :
-   - Chât liệu vải CVC Cotton pha Spandex cho độ dày dặn, co giãn tốt, giữ dáng khi mặc
-   - Bề mặt vải dệt mắt to vải cá sấu tạo sự dầy dặn lịch sự cho sản phẩm 
-   - Công nghệ dệt sợi tiêu chuẩn được xử lý giúp chống tia UV và kháng khuẩn.
-   - Form áo thiết kế tiêu chuẩn lên form đẹp tạo sự thoải mái khi vận động
-   - Thương hiệu: Galvin ( LEO VATINO phân phối độc quyền )
-   - Xuất xứ: Việt Nam
-* Màu sắc & kích cỡ  Áo thun Polo nam cổ dệt :
-   - Màu sắc : bộ 7 màu theo ảnh ( trắng - đen - be - nâu - xanh than - xám - rêu đậm )
-   - Kích thước : 
-   + S : Chiều cao: 1m55-1m65, Cân nặng: dưới 58kg.
-   + M : Chiều cao: 1m65-1m80, Cân nặng: 59~67kg.
-   + L : Chiều cao: 1m65-1m80, Cân nặng: 68~74kg.
-   + XL : Chiều cao: 1m70-1m85, Cân nặng: trên 75kg
-   (Gợi ý:Mẫu 1m76 - 65kg fit đẹp size M) 
-   Liên hệ ngay với team CSKH của LEO VATINO để được hỗ trợ tư vấn size khi cần bạn nhé
-* Hướng dẫn sử dụng và bảo quản Áo thun Polo nam cổ dệt :
-   - Giặt ở nhiệt độ bình thường với chu kì ngắn
-   - Không được dùng hóa chất tẩy.
-   - Hạn chế sử dụng máy sấy ,ủi ở nhiệt độ thích hợp.
-   - Lộn mặt trái khi phơi tránh bị phai màu
-LEO VATINO CAM KẾT:
-   - Cam kết Áo thun Polo nam cổ dệt là sản phẩm chính hãng 100% giống mô tả. Hình ảnh sản độc quyền tự chụp 
-   - Cam kết 100% đổi size nếu sản phẩm khách đặt không vừa ( khách hàng giữ nguyên Tem mác và chưa sử dụng)
-   - Cam kết hỗ trợ 100% chi phí nếu shop gửi sai sản phẩm tới khách hàng 
-   - Cam kết hỗ trợ đổi sang sản phẩm khác cùng giá hoặc cao hơn nếu khách có nhu cầu đổi mẫu khác.
-   - Nếu có bất kì khiếu nại cần Shop hỗ trợ về sản phẩm, khi mở sản phẩm các Chị vui lòng quay lại video quá trình mở sản phẩm để được đảm bảo 100% đổi lại sản phẩm mới nếu Shop giao bị lỗi.
-   - Sản phẩm của LEO VATINO đầy đủ tem, mác, đóng gói bằng túi Zip thương hiệu đẹp có thể làm quà tặng
-LEO VATINO luôn có rất nhiều ƯU ĐÃI - bạn hãy Áp dụng đủ các mã để mua sản phẩm với giá tốt nhất nhé :
-   - Giá tốt hơn khi mua từ 2 sản phẩm
-   - Voucher của Shop 
-   - Mua kèm Deal shock các sản phẩm HOT khác 
-   - Freeship Extra toàn quốc
-   - Hoàn Xu Extra mọi đơn hàng
- 📌 LƯU Ý:  Khi bạn gặp bất kì vấn đề gì về sản phẩm đừng vội đánh giá mà hãy liên hệ Shop để đc hỗ trợ 1 cách tốt nhất nhé
- LEO VATINO xin cảm ơn bạn và mong bạn có trải nghiệm tốt nhất khi mua hàng tại Shop ạ.
-#aopolonam #aothunpolo #aothuncoco #aothunnam #LeoVatino #aothuncotton #aothun #aopolo #polo #cotton #nam #formrong #hanquoc #aodep #Galvin #thoitrang #freeship</span>
+								<span>${item.getDescription()}</span>
 							</div>
 						</div>
 					</div>

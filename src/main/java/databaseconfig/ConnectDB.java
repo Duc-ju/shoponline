@@ -25,7 +25,7 @@ public class ConnectDB {
      * Check Driver connect to MySQL
      */
     public static Connection openConnect(){
-    	String jdbcURL = "jdbc:mysql://localhost:3306/shoponline?useSSL=false";
+    	String jdbcURL = "jdbc:mysql://localhost:3306/ShopOnline?useSSL=false";
 		String jdbcUsername = "root";
 		String jdbcPassword = "";
 		try {

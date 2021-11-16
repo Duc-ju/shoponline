@@ -4,9 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
-import org.eclipse.jdt.internal.compiler.ast.ThisReference;
-
 import model.customer.Account;
 import model.customer.Customer;
 
@@ -26,8 +23,22 @@ public class AccountDAOImpl implements AccountDAO{
 
 	@Override
 	public int add(Account t) {
-		// TODO Auto-generated method stub
-		return 0;
+		try {
+			
+			PreparedStatement preparedStatement = con.
+					prepareStatement("INSERT INTO Account(username, password) " 
+							 + "VALUES (?, ?);");
+			preparedStatement.setString(1, t.getUsername());
+			preparedStatement.setString(2, t.getPassword());
+			System.out.println(preparedStatement);
+			preparedStatement.executeUpdate();
+			Customer customer = CheckAccount(t);
+			return customer.getAccount().getId();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return -1;
 	}
 
 	@Override
@@ -46,7 +57,7 @@ public class AccountDAOImpl implements AccountDAO{
 	public Customer CheckAccount(Account account) {
 		try {
 			PreparedStatement preparedStatement = con.
-					prepareStatement("SELECT * FROM account\r\n"
+					prepareStatement("SELECT * FROM Account\r\n"
 							+ "WHERE username = ?\r\n"
 							+ "AND passWord = ?");
 			preparedStatement.setString(1, account.getUsername());
@@ -56,7 +67,8 @@ public class AccountDAOImpl implements AccountDAO{
 			Customer customer = new Customer();
 			if(rs.next()) {
 				account.setId(rs.getInt(1));
-				customer.setId(2);
+				customer.setAccount(account);
+				customer.setId(rs.getInt(2));
 				return customer;
 			}
 		} catch (SQLException e) {
@@ -68,8 +80,29 @@ public class AccountDAOImpl implements AccountDAO{
 
 	@Override
 	public boolean checkDuplicatedName(String username) {
-		// TODO Auto-generated method stub
+		try {
+			PreparedStatement preparedStatement = con.
+					prepareStatement("SELECT * FROM Account\r\n"
+							+ "WHERE username = ?\r\n");
+			preparedStatement.setString(1, username);
+			System.out.println(preparedStatement);
+			ResultSet rs = preparedStatement.executeQuery();
+			Customer customer = new Customer();
+			if(rs.next()) {
+				return true;
+			}
+			return false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return false;
 	}
+		
+//	public static void main (String[] args) {
+//		ConnectDB.openConnect();
+////		System.out.println(new AccountDAOImpl().add(new Account("khanh1","khanh1")));
+//		System.out.println(new AccountDAOImpl().checkDuplicatedName("khanh2"));
+//	}
 
 }

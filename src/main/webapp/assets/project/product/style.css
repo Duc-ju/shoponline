@@ -43,9 +43,11 @@
 }
 
 .list-item{
-	width: 82px;
-	height: 82px;
-	border: 1px solid var(--primary_color);
+	display: flex;
+    width: 82px;
+    height: 82px;
+    border: 1px solid var(--primary_color);
+    justify-content: center;
 }
 .list-item:hover{
 	border: 1px solid var(--highlight_color);
@@ -54,9 +56,10 @@
 	margin-left: 8px;
 }
 .list-item img{
-	display: block;
-	width: 100%;
-	height: auto;
+	    display: block;
+    width: auuto;
+    height: 100%;
+    overflow: hidden;
 }
 .product-info{
 	width: 60%;
@@ -97,7 +100,7 @@
 	display: inline-block;
 	padding: 4px;
 	font-size: 30px;
-	width: 160px;
+	width: 186px;
 	text-align: center;
 	background-color: var(--highlight_color);
 	color: white;
@@ -195,6 +198,7 @@
 }
 
 .description-col-10{
+	margin-left: 16px;
 	width: 80%;
 	
 }

@@ -13,7 +13,11 @@
 
 	<!-- Main css -->
 	<link rel="stylesheet" href="assets/project/login/assets/css/style.css">
-	<title>Login</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+	<title>Đăng nhập</title>
 </head>
 
 <body>
@@ -29,7 +33,7 @@
 					</div>
 
 					<div class="signin-form">
-						<h2 class="form-title">Log in</h2>
+						<h2 class="form-title">Đăng nhập</h2>
 
 						<c:if test = "${errorLogin==1}">
          					<div style="color: red; font-weight: 600; margin-bottom: 15px; padding: 10px 4px; background-color: rgba(255,0,0,0.3)">Wrong user name or password!</div>
@@ -41,29 +45,28 @@
 								<label for="your_name"><i
 										class="zmdi zmdi-account material-icons-name"></i></label>
 								<input type="text" name="username" id="your_name"
-									required placeholder="Your Name" />
+									required placeholder="Tên tài khoản" />
 							</div>
 							<div class="form-group">
 								<label for="your_pass"><i
 										class="zmdi zmdi-lock"></i></label>
 								<input type="password" name="password" id="your_pass"
-									required placeholder="Password" />
+									required placeholder="Mật khẩu" />
 							</div>
 							<div class="form-group">
 								<input type="checkbox" name="rememberme"
 									id="remember-me" checked class="agree-term" />
 								<label for="remember-me"
-									class="label-agree-term"><span><span></span></span>Remember
-									me</label>
+									class="label-agree-term"><span><span></span></span>Ghi nhớ đăng nhập</label>
 							</div>
 							<div class="form-group form-button">
 								<input type="submit" name="signin" id="signin"
-									class="form-submit" value="Log in" />
+									class="form-submit" value="Đăng nhập" />
 							</div>
 						</form>
 					</div>
 				</div>
-				<a href="Register.jsp" class="signup-link">Create an account</a>
+				<a href="Register.jsp" class="signup-link">Tạo tài khoản</a>
 			</div>
 		</section>
 	</div>

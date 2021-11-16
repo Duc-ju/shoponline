@@ -1,5 +1,8 @@
 package logicapplication.bookDAO;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import model.book.Publisher;
@@ -14,8 +17,24 @@ public class PublisherDAOImpl implements PublisherDAO{
 
 	@Override
 	public Publisher get(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+         	PreparedStatement preparedStatement = con.
+                      	prepareStatement("SELECT * FROM publisher WHERE ID = ?");
+         	preparedStatement.setInt(1, id);
+         	System.out.println(preparedStatement);
+         	ResultSet rs = preparedStatement.executeQuery();
+         	if(rs.next()) {
+               	Publisher publisher = new Publisher();
+               	publisher.setId(rs.getInt(1));
+               	publisher.setName(rs.getString(2));
+               	publisher.setAddress(rs.getString(3));
+               	return publisher;
+         	}
+  	} catch (SQLException e) {
+         	// TODO Auto-generated catch block
+         	e.printStackTrace();
+  	}
+  	return null;
 	}
 
 	@Override

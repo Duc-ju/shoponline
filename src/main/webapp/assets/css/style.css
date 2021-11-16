@@ -496,6 +496,7 @@ input{
 .item-name{
   font-size: 13px;
   font-weight: 500;
+  height: 33px;
 }
 .item-old-price{
   color: var(--extra_color);
@@ -530,7 +531,7 @@ input{
   clear: both;
 }
 .item-price{
-  font-size: 16px;
+  font-size: 13px;
 
 }
 .item-discount{

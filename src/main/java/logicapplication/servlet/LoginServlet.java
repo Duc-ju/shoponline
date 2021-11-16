@@ -1,4 +1,4 @@
-package servlet;
+package logicapplication.servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
 		if(customer!=null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("customer",customer);
-			response.sendRedirect(request.getContextPath()+"/");
+			response.sendRedirect(request.getContextPath()+"/home");
 		}
 		else {
 			request.setAttribute("errorLogin", 1);

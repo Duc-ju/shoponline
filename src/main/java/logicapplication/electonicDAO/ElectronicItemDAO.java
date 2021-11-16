@@ -7,6 +7,8 @@ import model.book.BookItem;
 import model.electronic.ElectronicItem;
 
 public interface ElectronicItemDAO extends BaseDAO<ElectronicItem>{
-	List<BookItem> getListByHeader(String header);
-	
+	List<ElectronicItem> getListByHeader(String header);
+	List<ElectronicItem> getLaptopItems();
+	List<ElectronicItem> getTabletItems();
+	List<ElectronicItem> getMobilePhones();
 }

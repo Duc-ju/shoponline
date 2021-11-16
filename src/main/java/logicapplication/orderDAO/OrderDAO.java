@@ -8,4 +8,6 @@ import model.order.Order;
 public interface OrderDAO extends BaseDAO<Order>{
 	void getCustomer(Customer c);
 	void getCart(Cart c);
+	void updateStatus(Order o);
+	
 }

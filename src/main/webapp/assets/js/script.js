@@ -45,28 +45,13 @@ function toast({ title = "", message = "", type = "info", duration = 3000 }) {
 		main.appendChild(toast);
 	}
 }
-function showSuccessToast() {
+function showSuccessToast(ms) {
 	toast({
 		title: "Thông báo!",
-		message: "Thêm sản phẩm vào giỏ hàng thành công",
+		message: ms,
 		type: "success",
 		duration: 5000
 	});
 }
-function handleAddItem(){
-	addButtons = document.querySelectorAll('.item-add-button');
-	addButtons.forEach(addButton => {
-		addButton.onclick = (e) =>{
-			if(document.querySelector('#logout')===null) window.location.replace('#')
-			else{
-				//Ajax
 
-				//Show message
-				showSuccessToast();
-			}
-			e.preventDefault();
-		}
-	});
-}
-handleAddItem();
 

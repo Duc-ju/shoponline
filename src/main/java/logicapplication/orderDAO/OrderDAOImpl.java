@@ -1,5 +1,8 @@
 package logicapplication.orderDAO;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import model.customer.Customer;
@@ -22,7 +25,29 @@ public class OrderDAOImpl implements OrderDAO{
 
 	@Override
 	public int add(Order t) {
-		// TODO Auto-generated method stub
+		try {
+			PreparedStatement preparedStatement = con
+					.prepareStatement("INSERT INTO `order` (CustomerID, Status) VALUES (?,?);");
+
+			preparedStatement.setInt(1, t.getId());
+			preparedStatement.setString(2, "new");
+
+			System.out.println(preparedStatement);
+			preparedStatement.executeUpdate();
+			try {
+				PreparedStatement preparedStatement1 = con.prepareStatement("SELECT MAX(ID) FROM `order`;");
+				System.out.println(preparedStatement1);
+				ResultSet rs1 = preparedStatement1.executeQuery();
+				if(rs1.next()) {
+					return rs1.getInt(1);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return 0;
 	}
 
@@ -48,6 +73,22 @@ public class OrderDAOImpl implements OrderDAO{
 	public void getCart(Cart c) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void updateStatus(Order o) {
+		try {
+			PreparedStatement preparedStatement = con.prepareStatement("UPDATE `order` SET Status = ? WHERE ID = ?");
+
+			preparedStatement.setString(1, o.getStatus());
+			preparedStatement.setInt(2, o.getId());
+
+			System.out.println(preparedStatement);
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

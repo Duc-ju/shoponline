@@ -14,7 +14,7 @@
 
 	<!-- Main css -->
 	<link rel="stylesheet" href="assets/project/login/assets/css/style.css">
-	<title>Login</title>
+	<title>Đăng kí</title>
 </head>
 
 <body>
@@ -25,7 +25,7 @@
 			<div class="container">
 				<div class="signup-content">
 					<div class="signup-form">
-						<h2 class="form-title">Sign up</h2>
+						<h2 class="form-title">Đăng kí</h2>
 						<form method="POST" class="register-form" id="register-form"
 							action="${pageContext.request.contextPath}/register">
 
@@ -37,13 +37,13 @@
 								<label for="name"><i
 										class="zmdi zmdi-account material-icons-name"></i></label>
 								<input type="text" name="username" id="name" required
-									placeholder="Username" />
+									placeholder="Tên đăng nhập" />
 							</div>
 							<div class="form-group">
 								<label for="phonenumber"><i
 										class="zmdi zmdi-face"></i></label>
 								<input type="text" name="phoneNumber" id="phonenumber" required
-									placeholder="Phone number" />
+									placeholder="Số điện thoại" />
 							</div>
 							<div class="form-group">
 								<label for="email"><i
@@ -54,34 +54,32 @@
 							<div class="form-group">
 								<label for="pass"><i class="zmdi zmdi-lock"></i></label>
 								<input type="password" name="pass" id="pass" required
-									placeholder="Password" />
+									placeholder="Mật khẩu" />
 							</div>
 							<div class="form-group">
 								<label for="re-pass"><i
 										class="zmdi zmdi-lock-outline"></i></label>
 								<input type="password" name="re_pass" id="re_pass"
-									required placeholder="Repeat your password" />
+									required placeholder="Nhập lại mật khẩu" />
 							</div>
 							<div class="form-group">
 								<input type="checkbox" name="agree-term" id="agree-term"
 									class="agree-term" />
 								<label for="agree-term"
-									class="label-agree-term"><span><span></span></span>I
-									agree all statements in <a
+									class="label-agree-term"><span><span></span></span>Tôi đồng ý với <a
 										href="TermsOfService.jsp"
-										class="term-service">Terms of
-										service</a></label>
+										class="term-service">Điều khoản sử dụng</a></label>
 							</div>
 							<div class="form-group form-button">
 								<input type="submit" name="signup" id="signup"
-									class="form-submit" value="Register" />
+									class="form-submit" value="Đăng kí" />
 							</div>
 						</form>
 					</div>
 					<div class="signup-image">
 						<figure><img src="assets/project/login/assets/images/signup-image.jpg" alt="sing up image">
 						</figure>
-						<a href="Login.jsp" class="signup-image-link">I am already member</a>
+						<a href="Login.jsp" class="signup-image-link">Tôi đã có tài khoản</a>
 					</div>
 				</div>
 			</div>

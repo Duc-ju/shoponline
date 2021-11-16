@@ -26,8 +26,32 @@ public class CustomerDAOImpl implements CustomerDAO{
 
 	@Override
 	public int add(Customer t) {
-		// TODO Auto-generated method stub
-		return 0;
+		try {
+			PreparedStatement preparedStatement = con.
+					prepareStatement("INSERT INTO Customer (Phone, Mail) VALUES (?, ?);");
+			preparedStatement.setString(1, t.getPhone());
+			preparedStatement.setString(2, t.getMail());
+			System.out.println(preparedStatement);
+			preparedStatement.executeUpdate();
+			preparedStatement = con.
+					prepareStatement("SELECT MAX(ID) FROM Customer;");
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			if(rs.next()) {
+				int customerID = rs.getInt(1);
+				preparedStatement = con.
+						prepareStatement("UPDATE Account SET CustomerID = ? WHERE ID = ?;");
+				preparedStatement.setInt(1, customerID);
+				preparedStatement.setInt(2, t.getAccount().getId());
+				preparedStatement.executeUpdate();
+				return customerID;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return -1;
 	}
 
 	@Override

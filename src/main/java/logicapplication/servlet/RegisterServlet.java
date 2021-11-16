@@ -1,4 +1,4 @@
-package servlet;
+package logicapplication.servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -9,8 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import logicapplication.customerDAO.AccountDAOImpl;
+import logicapplication.customerDAO.CustomerDAOImpl;
+import logicapplication.orderDAO.CartDAOImpl;
+import logicapplication.orderDAO.OrderDAOImpl;
 import model.customer.Account;
 import model.customer.Customer;
+import model.order.Cart;
+import model.order.Order;
 
 /**
  * Servlet implementation class Register
@@ -56,34 +61,25 @@ public class RegisterServlet extends HttpServlet {
 			return;	
 		}
 		else {
-			int ID = accountDAOImpl.add(new Account(username,pass));
+			Account c = new Account(username,pass);
+			int ID = accountDAOImpl.add(c);
 			if(ID==-1) {
 				request.setAttribute("errorMessage", "Adding error");
 				request.getRequestDispatcher("Register.jsp").forward(request, response);
 				return;	
 			}
-			else {
-				
+			else{
+				c.setId(ID);
+				int cusID = new CustomerDAOImpl().add(new Customer(phoneNumber,email,c));
+				c.setId(cusID);
+				HttpSession session = request.getSession();
+				session.setAttribute("customer",c);
+				int orderID = new OrderDAOImpl().add(new Order(c.getId()));
+				int cartID = new CartDAOImpl().add(new Cart());
+				new CartDAOImpl().setOrderID(cartID, orderID);
+				request.getRequestDispatcher("/home").forward(request, response);
 			}
 		}
-//		AccountDAO accountDAO= new AccountDAO();
-//		if(accountDAO.checkAccountByName(name)) {
-//			request.setAttribute("errorMessage", "The user name is used");
-//			request.getRequestDispatcher("Register.jsp").forward(request, response);
-//			return;
-//		}
-//		else {  
-//			accountDAO.addAccount(new Account(name, pass));
-//			CustomerDAO customerDAO = new CustomerDAO();
-//			customerDAO.addCustomer(new Customer(nickname,
-//					accountDAO.getAccount(new Account(name, pass)), null));
-//			Customer customer = new CustomerDAO().getCustomer
-//					(new AccountDAO().getAccount(new Account(name, pass)));
-//			new CartDAO().createCartByCustomerID(customer.getID());
-//			HttpSession session = request.getSession();
-//			session.setAttribute("customer",customer);
-//			response.sendRedirect(request.getContextPath()+"/home");
-//		}
 	}
 
 }
