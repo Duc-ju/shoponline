@@ -16,6 +16,7 @@ public class Cart {
 	private List<ClothesItem> clothesItems;
 	private List<ElectronicItem> elctronicItems;
 	private List<ShoesItem> shoesItems;
+	
 	public int getId() {
 		return id;
 	}

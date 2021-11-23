@@ -26,7 +26,34 @@ public class CartDAOImpl implements CartDAO{
 
 	@Override
 	public Cart get(int id) {
-		// TODO Auto-generated method stub
+		try {
+			PreparedStatement preparedStatement = con
+					.prepareStatement("SELECT * FROM cart where ID=?");
+			preparedStatement.setInt(1, id);
+			System.out.println(preparedStatement);
+			ResultSet rs = preparedStatement.executeQuery();
+			Cart cart = new Cart();
+			if(rs.next()) {
+				cart.setId(rs.getInt(1));
+				cart.setBookItems(new CartDAOImpl().getBookItems(cart.getId()));
+				cart.setElctronicItems(new CartDAOImpl().getElectronicItems(cart.getId()));
+				//shoes
+				//clothes
+				cart.setQuanity(cart.getBookItems().size()+cart.getElctronicItems().size());
+				float total = 0;
+				for(BookItem bookItem : cart.getBookItems()) {
+					total+=bookItem.getPrices();
+				}
+				for(ElectronicItem electronicItem : cart.getElctronicItems()) {
+					total+=electronicItem.getPrices();
+				}
+				cart.setTotalPrice(total);
+				return cart;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
@@ -81,8 +108,8 @@ public class CartDAOImpl implements CartDAO{
 
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
-
         } catch (SQLException e) {
+        	
         	e.printStackTrace();
         }
 	}
@@ -265,5 +292,20 @@ public class CartDAOImpl implements CartDAO{
 		}
 		return null;
 		
+	}
+	public void setPaymentID(int PaymentID, int CartID) {
+		try {
+        	PreparedStatement preparedStatement = con.
+    				prepareStatement("UPDATE `cart` SET PaymentID = ? WHERE ID = ?");
+            
+        	preparedStatement.setInt(1, PaymentID);
+            preparedStatement.setInt(2, CartID);
+
+            System.out.println(preparedStatement);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+        	
+        	e.printStackTrace();
+        }
 	}
 }

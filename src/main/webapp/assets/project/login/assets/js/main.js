@@ -6,22 +6,22 @@ submit_button.onclick = (e)=>{
 	let name = document.getElementById("name");
 	let agree = document.getElementById("agree-term");
 	if(name.value.length < 3){
-		errorMessage.innerHTML="Your name must have at least 3 characters";
+		errorMessage.innerHTML="Tên người dùng phải có ít nhất 3 chữ cái";
 		e.preventDefault()
 		return
 	}
 	if(pass.value!=rePass.value){
-		errorMessage.innerHTML="Password and re-pass are different"
+		errorMessage.innerHTML="Password không trùng nhau"
 		e.preventDefault()
 		return
 	}
-	if(pass.value.length < 8){
-		errorMessage.innerHTML="Your password must be at least 8 characters";
+	if(pass.value.length < 4){
+		errorMessage.innerHTML="Mật khẩu phải chứa ít nhất 4 kí tự";
 		e.preventDefault()
 		return
 	}
 	if(agree.checked == false){
-		errorMessage.innerHTML="Read all statements in Terms of service and agree by checking to the box";
+		errorMessage.innerHTML="Đọc điều khoản và tick vào ô xác nhận";
 		e.preventDefault()
 		return
 	}

@@ -1,14 +1,19 @@
 package model.order;
 
+import logicapplication.orderDAO.CartDAOImpl;
+import model.customer.Customer;
+
 public class Order {
 
 	private int id;
 	private float totalAmount;
 	private String status;
+	private Customer customer;
 	private Shipment shipment;
 	private Payment payment;
 	private Cart cart;
 	private Voucher voucher;
+	
 	public Order(int id, float totalAmount, String status, Shipment shipment, Payment payment, Cart cart,
 			Voucher voucher) {
 		super();
@@ -73,6 +78,18 @@ public class Order {
 		this.voucher = voucher;
 	}
 
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 	
+	public Object getHeaderItem() {
+		if(cart.getBookItems().size()>0) return (Object)cart.getBookItems().get(0);
+		else if(cart.getElctronicItems().size()>0) return cart.getElctronicItems().get(0);
+		return null;
+	}
 	
 }

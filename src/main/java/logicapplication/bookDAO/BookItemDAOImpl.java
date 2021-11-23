@@ -96,8 +96,51 @@ public class BookItemDAOImpl implements BookItemDAO{
 
 	@Override
 	public int add(BookItem t) {
-		// TODO Auto-generated method stub
-		return 0;
+		int BookItemID = 0;
+      	try {
+             	PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO `bookitem`"
+                          	+ "  (BookID, Barcode, Price, Header, Discount, Description) VALUES " + " (?, ?, ?, ?, ?, ?);");
+
+             	preparedStatement.setInt(1, t.getBook().getId());
+             	preparedStatement.setString(2, t.getBarcode());
+             	preparedStatement.setFloat(3, t.getPrices());
+             	preparedStatement.setString(4, t.getHeader());
+             	preparedStatement.setFloat(5, t.getDiscount());
+             	preparedStatement.setString(6, t.getDescription());
+
+             	System.out.println(preparedStatement);
+             	preparedStatement.executeUpdate();
+             	try {
+                   	PreparedStatement preparedStatement1 = con.prepareStatement("SELECT MAX(ID) FROM `bookitem`;");
+                   	System.out.println(preparedStatement1);
+                   	ResultSet rs1 = preparedStatement1.executeQuery();
+                   	if (rs1.next()) {
+                          	BookItemID = rs1.getInt(1);
+
+	                       	
+                          	List<String> images = t.getImage();
+                          	for (int i = 0; i < images.size(); i++) {
+                                 	PreparedStatement preparedStatement2 = con.prepareStatement(
+                                               	"INSERT INTO `bookitem_image`" + "  (BookItemID, BookItemIndex, Image) VALUES " + " (?, ?, ?);");
+                                 	
+                                 	preparedStatement2.setInt(1, BookItemID);
+                                 	preparedStatement2.setInt(2, i);
+                                 	preparedStatement2.setString(3, images.get(i));
+                                 	
+                                 	System.out.println(preparedStatement2);
+                                 	preparedStatement2.executeUpdate();
+                          	}
+                          	
+                   	}
+             	} catch (SQLException e) {
+                   	e.printStackTrace();
+             	}
+
+      	} catch (SQLException e) {
+             	// TODO Auto-generated catch block
+             	e.printStackTrace();
+      	}
+      	return BookItemID;
 	}
 
 	@Override

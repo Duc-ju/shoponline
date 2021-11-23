@@ -60,7 +60,7 @@
 							<div class="book-author">Tác giả:
 								${item.getBook().getAuthor().getName() }</div>
 						</div>
-						<div class="book-price">${item.getPrices()}đ</div>
+						<div class="book-price"><fmt:formatNumber value="${item.getPrices()}" minFractionDigits="0" maxFractionDigits="0" />đ</div>
 						<div class="book-action">
 							<a class="book-delete-button"
 								href="${pageContext.request.contextPath}/delete-item-cart?type=bookitem&id=${item.getId()}">Xóa</a>
@@ -79,7 +79,7 @@
 							<div class="book-author">Thương hiệu:
 								${item.getElectronic().getBrand()}</div>
 						</div>
-						<div class="book-price">${item.getPrices()}đ</div>
+						<div class="book-price"><fmt:formatNumber value="${item.getPrices()}" minFractionDigits="0" maxFractionDigits="0" />đ</div>
 						<div class="book-action">
 							<a class="book-delete-button"
 								href="${pageContext.request.contextPath}/delete-item-cart?type=electronicitem&id=${item.getId()}">Xóa</a>
@@ -92,7 +92,7 @@
 					<div class="cart-order">
 						<div class="cart-total-price">Tổng đơn hàng
 							(${cart.getQuanity()} sản phẩm): <fmt:formatNumber value="${cart.getTotalPrice()}" minFractionDigits="0" maxFractionDigits="0" />đ</div>
-						<div class="cart-order-button pointer">Đặt hàng</div>
+						<a href="${pageContext.request.contextPath}/createorder" class="cart-order-button pointer">Đặt hàng</a>
 					</div>
 				</div>
 			</div>

@@ -71,10 +71,13 @@ public class RegisterServlet extends HttpServlet {
 			else{
 				c.setId(ID);
 				int cusID = new CustomerDAOImpl().add(new Customer(phoneNumber,email,c));
-				c.setId(cusID);
+				Customer customer = new CustomerDAOImpl().get(cusID);
+				System.out.println(customer.getId());
 				HttpSession session = request.getSession();
-				session.setAttribute("customer",c);
-				int orderID = new OrderDAOImpl().add(new Order(c.getId()));
+				session.setAttribute("customer",customer);
+				Order order = new Order();
+				order.setCustomer(customer);
+				int orderID = new OrderDAOImpl().add(order);
 				int cartID = new CartDAOImpl().add(new Cart());
 				new CartDAOImpl().setOrderID(cartID, orderID);
 				request.getRequestDispatcher("/home").forward(request, response);

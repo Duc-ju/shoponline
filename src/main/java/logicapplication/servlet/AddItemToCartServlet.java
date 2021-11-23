@@ -39,7 +39,6 @@ public class AddItemToCartServlet extends HttpServlet {
 		else {
 			String type = request.getParameter("type");
 			int id = Integer.parseInt(request.getParameter("id"));
-			
 			CartDAOImpl cartDAOImpl = new CartDAOImpl();
 			int idCart = cartDAOImpl.getCurrentCart(customer.getId()).getId();
 			switch (type) {

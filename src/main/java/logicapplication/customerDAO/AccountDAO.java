@@ -5,6 +5,6 @@ import model.customer.Account;
 import model.customer.Customer;
 
 public interface AccountDAO extends BaseDAO<Account>{
-	Customer CheckAccount(Account account);
+	Account checkAccount(Account account);
 	boolean checkDuplicatedName(String username);
 }

@@ -17,7 +17,21 @@ public class AccountDAOImpl implements AccountDAO{
 
 	@Override
 	public Account get(int id) {
-		// TODO Auto-generated method stub
+		try {
+			
+			PreparedStatement preparedStatement = con.
+					prepareStatement("select * from account where id = ?");
+			preparedStatement.setInt(1, id);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if(resultSet.next()) {
+				return new Account(resultSet.getInt("ID"),
+						resultSet.getString("Username"),
+						resultSet.getString("Password"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
@@ -32,8 +46,8 @@ public class AccountDAOImpl implements AccountDAO{
 			preparedStatement.setString(2, t.getPassword());
 			System.out.println(preparedStatement);
 			preparedStatement.executeUpdate();
-			Customer customer = CheckAccount(t);
-			return customer.getAccount().getId();
+			Account account = checkAccount(t);
+			return account.getId();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -44,7 +58,17 @@ public class AccountDAOImpl implements AccountDAO{
 	@Override
 	public void update(Account t) {
 		// TODO Auto-generated method stub
-		
+		try {
+			PreparedStatement preparedStatement = con.prepareStatement("UPDATE Account SET password = ? WHERE ID = ?;");
+			preparedStatement.setString(1, t.getPassword());
+			preparedStatement.setInt(2, t.getId());
+			System.out.println(preparedStatement);
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -54,7 +78,7 @@ public class AccountDAOImpl implements AccountDAO{
 	}
 
 	@Override
-	public Customer CheckAccount(Account account) {
+	public Account checkAccount(Account account) {
 		try {
 			PreparedStatement preparedStatement = con.
 					prepareStatement("SELECT * FROM Account\r\n"
@@ -64,12 +88,9 @@ public class AccountDAOImpl implements AccountDAO{
 			preparedStatement.setString(2, account.getPassword());
 			System.out.println(preparedStatement);
 			ResultSet rs = preparedStatement.executeQuery();
-			Customer customer = new Customer();
 			if(rs.next()) {
 				account.setId(rs.getInt(1));
-				customer.setAccount(account);
-				customer.setId(rs.getInt(2));
-				return customer;
+				return account;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -274,7 +274,7 @@
 															<fmt:formatNumber value="${item.getPrices()}"
 																minFractionDigits="0" maxFractionDigits="0" />đ
 														</div>
-														<a href='${pageContext.request.contextPath}/add-to-cart?type=electroniciem&id=${item.getId()}' class="item-add-button">Thêm vào giỏ</a>
+														<a href='${pageContext.request.contextPath}/add-to-cart?type=electronicitem&id=${item.getId()}' class="item-add-button">Thêm vào giỏ</a>
 													</div>
 												</div>
 											</div>

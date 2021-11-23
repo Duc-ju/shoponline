@@ -5,7 +5,7 @@
 			<div class="footer-container">
 				<div class="footer-section">
 					<h2>CHĂM SÓC KHÁCH HÀNG</h2>
-					<ul>
+					<ul  style="color:black">
 						<li><a href="#">Trung Tâm Trợ Giúp</a></li>
 						<li><a href="#">Hướng Dẫn Mua Hàng</a></li>
 						<li><a href="#">Thanh Toán</a></li>

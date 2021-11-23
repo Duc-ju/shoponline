@@ -5,15 +5,19 @@ public class Shipment {
 	private int id;
 	private String type;
 	private float cost;
-	public Shipment(int id, String type, float cost) {
+	private String address;
+	public Shipment(String type, float cost, String address) {
+		super();
+		this.type = type;
+		this.cost = cost;
+		this.address = address;
+	}
+	public Shipment(int id, String type, float cost, String address) {
 		super();
 		this.id = id;
 		this.type = type;
 		this.cost = cost;
-	}
-	public Shipment() {
-		super();
-		// TODO Auto-generated constructor stub
+		this.address = address;
 	}
 	public int getId() {
 		return id;
@@ -32,6 +36,12 @@ public class Shipment {
 	}
 	public void setCost(float cost) {
 		this.cost = cost;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	

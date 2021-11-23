@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/main/java/logicapplication/servlet/CreateOrderServlet.java=UTF-8
 encoding//src/main/java/logicapplication/servlet/HomeServlet.java=UTF-8
 encoding//src/main/java/logicapplication/servlet/ProductPageServlet.java=UTF-8
 encoding//src/main/java/logicapplication/servlet/ProductServlet.java=UTF-8

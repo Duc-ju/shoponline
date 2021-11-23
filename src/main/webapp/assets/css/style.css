@@ -44,9 +44,9 @@ html{
   background-color: var(--background_color);
 }
 a{
-  display: block;
+  display: inline-block;
   text-decoration: none;
-  color:black;
+  color: var(--primary_color)
 }
 .hidden-book{
   opacity: 0.5;
@@ -247,6 +247,7 @@ input{
 #header .search {
 }
 #search-product-name {
+  font-size: 14px;
   border: none;
   line-height: 1.8;
   border-radius: 4px;
@@ -254,6 +255,7 @@ input{
   padding: 4px 8px;
 }
 #submit-button {
+  font-size: 14px;
   background-color: white;
   color: black;
   border: none;
@@ -584,4 +586,7 @@ input{
 .pagination li.active a{
   background-color: var(--secondary_color);
   color: white;
+}
+#footer a{
+	color: black;
 }

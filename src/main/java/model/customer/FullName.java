@@ -41,6 +41,8 @@ public class FullName {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
 	
+	public String toString() {
+		return firstName + " " +midName +" "+lastName;
+	}
 }

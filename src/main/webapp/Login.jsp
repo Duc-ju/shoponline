@@ -36,7 +36,7 @@
 						<h2 class="form-title">Đăng nhập</h2>
 
 						<c:if test = "${errorLogin==1}">
-         					<div style="color: red; font-weight: 600; margin-bottom: 15px; padding: 10px 4px; background-color: rgba(255,0,0,0.3)">Wrong user name or password!</div>
+         					<div style="color: red; font-weight: 600; margin-bottom: 15px; padding: 10px 4px; background-color: rgba(255,0,0,0.3)">Tên tài khoản mặc mật khẩu không chính xác!</div>
       					</c:if>  
 
 						<form method="POST" class="register-form" id="login-form"

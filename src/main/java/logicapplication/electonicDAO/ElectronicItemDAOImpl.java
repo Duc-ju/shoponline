@@ -3,11 +3,13 @@ package logicapplication.electonicDAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import logicapplication.bookDAO.BookItemDAOImpl;
 import model.book.BookItem;
+import model.electronic.Electronic;
 import model.electronic.ElectronicItem;
 
 public class ElectronicItemDAOImpl implements ElectronicItemDAO{
@@ -125,7 +127,34 @@ public class ElectronicItemDAOImpl implements ElectronicItemDAO{
 	@Override
 	public int add(ElectronicItem t) {
 		// TODO Auto-generated method stub
-		return 0;
+		String insertString = "insert into electronicitem(ElectronicID, Prices, Description, Header, Discount)"
+				+ "values(?,?,?,?,?)";
+		String insertImage = "insert into electronicitem_image(ElectronicItemID, ElectronicItemIndex, Image)"
+				+ "values(?,?,?)";
+		try {
+         	PreparedStatement ps = con.prepareStatement(insertString, Statement.RETURN_GENERATED_KEYS);
+         	ps.setInt(1, t.getElectronic().getId());
+         	ps.setFloat(2,  t.getPrices());
+         	ps.setString(3, t.getDescription());
+         	ps.setString(4, t.getHeader());
+         	ps.setFloat(5, t.getDiscount());
+         	ps.executeUpdate();
+         	ResultSet rs = ps.getGeneratedKeys();
+         	while (rs.next()) {
+               	t.setId(rs.getInt(1));
+         	}
+         	ps =  con.prepareStatement(insertImage);
+         	ps.setInt(1, t.getId());
+         	for(int i = 0; i < t.getImage().size(); i++) {
+         		ps.setInt(2, i+1);
+         		ps.setString(3, t.getImage().get(i));
+         		ps.executeUpdate();
+         	}
+  	} catch (SQLException e) {
+         	// TODO Auto-generated catch block
+         	e.printStackTrace();
+  	}
+		return t.getId();
 	}
 
 	@Override

@@ -7,20 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import logicapplication.orderDAO.CartDAOImpl;
+import logicapplication.orderDAO.OrderDAOImpl;
 import model.customer.Customer;
+import model.order.Order;
 
 /**
- * Servlet implementation class DeleteItemFromCart
+ * Servlet implementation class CancelOrderServlet
  */
-@WebServlet("/delete-item-cart")
-public class DeleteItemFromCart extends HttpServlet {
+@WebServlet("/cancelorder")
+public class CancelOrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteItemFromCart() {
+    public CancelOrderServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,22 +35,12 @@ public class DeleteItemFromCart extends HttpServlet {
 			response.sendRedirect("Login.jsp");
 			return;
 		}
-		else {
-			String type = request.getParameter("type");
-			int id = Integer.parseInt(request.getParameter("id"));
-			CartDAOImpl cartDAOImpl = new CartDAOImpl();
-			int idCart = cartDAOImpl.getCurrentCart(customer.getId()).getId();
-			switch (type) {
-				case "bookitem":
-					cartDAOImpl.deleteBookItem(id, idCart);
-					break;
-				case "electronicitem":
-					cartDAOImpl.deleteElectronicItem(id, idCart);
-					break;	
-			}
-			request.setAttribute("deleteSuccess", 1);
-			request.getRequestDispatcher("/cart").forward(request, response);
-		}
+		int ID = Integer.parseInt(request.getParameter("id"));
+		Order order = new Order();
+		order.setId(ID);
+		order.setStatus("cancel");
+		new OrderDAOImpl().updateStatus(order);
+		response.sendRedirect(request.getContextPath()+"/listorder");
 	}
 
 	/**

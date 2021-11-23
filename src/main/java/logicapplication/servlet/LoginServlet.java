@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import logicapplication.customerDAO.AccountDAOImpl;
+import logicapplication.customerDAO.CustomerDAOImpl;
 import model.customer.Account;
 import model.customer.Customer;
 
@@ -40,8 +41,11 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userName = request.getParameter("username");
 		String password = request.getParameter("password");
-		Customer customer = new AccountDAOImpl().CheckAccount(new Account(userName, password));
-		if(customer!=null) {
+		Account account = new AccountDAOImpl().checkAccount(new Account(userName,password));
+		if(account!=null) {
+			Customer customer = new Customer();
+			customer.setAccount(account);
+			customer = new CustomerDAOImpl().get(customer);
 			HttpSession session = request.getSession();
 			session.setAttribute("customer",customer);
 			response.sendRedirect(request.getContextPath()+"/home");

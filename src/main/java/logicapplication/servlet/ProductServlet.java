@@ -56,8 +56,8 @@ public class ProductServlet extends HttpServlet {
 			String id = request.getParameter("id");
 			ElectronicItem electronicItem = new ElectronicItemDAOImpl().get(Integer.parseInt(id));
 			
-			request.setAttribute("type","electronic");
-			request.setAttribute("title","�?iện tử");
+			request.setAttribute("type","electronicitem");
+			request.setAttribute("title","Điện tử");
 			request.setAttribute("item", electronicItem);
 			String classFullname = electronicItem.getElectronic().getClass().getName();
 			String[] classFullnameSplitString = classFullname.split("\\.");

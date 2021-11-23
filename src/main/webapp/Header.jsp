@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <header id="header">
 
 			<div class="nav">
 				<ul class="control">
 					<c:if test = "${customer!=null}">
 						<li class="control-item">
-							<a href="${pageContext.request.contextPath}/user">
+							<a href="${pageContext.request.contextPath}/profile">
 								<i class="ti-user"> </i>
 								${customer.getAccount().getUsername()}
 							</a>

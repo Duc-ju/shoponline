@@ -10,6 +10,7 @@ import model.order.Cart;
 import model.shoes.ShoesItem;
 
 public interface CartDAO extends BaseDAO<Cart>{
+	void setPaymentID(int ShipmentID, int CartID);
 	Cart getCurrentCart(int customerID);
 	void setOrderID(int CartID, int orderID);
 	void addBookItem(int itemID, int cartID);

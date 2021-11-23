@@ -98,7 +98,7 @@ public class ProductPageServlet extends HttpServlet {
 					request.setAttribute("title", "Sản phẩm thuộc ngành hàng Máy tính bảng");
 					break;
 				case "mobilephoneitem":
-					request.setAttribute("title", "Sản phẩm thuộc ngành hàng �?iện thoại");
+					request.setAttribute("title", "Sản phẩm thuộc ngành hàng �?iện thoại");
 					break;
 			}
 			request.setAttribute("type", "electronicitem");

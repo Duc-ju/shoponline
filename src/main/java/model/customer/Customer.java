@@ -12,7 +12,8 @@ public class Customer {
 	private Account account;
 	private Address address;
 	private FullName fullName;
-	private List<Order> orders;
+	private String image;
+	private String sex;
 	
 	public Customer() {
 		super();
@@ -28,6 +29,18 @@ public class Customer {
 
 	
 	
+	public Customer(int id, String phone, String mail, Account account, Address address, FullName fullName) {
+		super();
+		this.id = id;
+		this.phone = phone;
+		this.mail = mail;
+		this.account = account;
+		this.address = address;
+		this.fullName = fullName;
+	}
+
+
+
 	public Customer(String phone, String mail, Account account) {
 		super();
 		this.phone = phone;
@@ -36,17 +49,28 @@ public class Customer {
 	}
 
 
-	public Customer(int id, String phone, String mail, Account account, Address address, FullName fullName,
-			List<Order> orders) {
-		super();
-		this.id = id;
-		this.phone = phone;
-		this.mail = mail;
-		this.account = account;
-		this.address = address;
-		this.fullName = fullName;
-		this.orders = orders;
+
+
+	public String getImage() {
+		return image;
 	}
+
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+
+	public String getSex() {
+		return sex;
+	}
+
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+
 	public int getId() {
 		return id;
 	}
@@ -82,12 +106,6 @@ public class Customer {
 	}
 	public void setFullName(FullName fullName) {
 		this.fullName = fullName;
-	}
-	public List<Order> getOrders() {
-		return orders;
-	}
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
 	}
 	
 }
